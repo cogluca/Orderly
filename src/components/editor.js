@@ -64,12 +64,11 @@ function Editor() {
             AutoLinkNode,
             LinkNode
         ]
-
     }
 
     return (
       <LexicalComposer initialConfig={config}>
-          <RichTextPlugin contentEditable={<ContentEditable/>} placeholder={<section>Here is some text</section>}>
+          <RichTextPlugin contentEditable={<ContentEditable/>}>
           </RichTextPlugin>
         <OnChangePlugin onChange={onChange}/>
           <MyCustomAutoFocusPlugin/>
