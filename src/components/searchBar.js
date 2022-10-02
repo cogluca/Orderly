@@ -3,10 +3,8 @@ import {useState, useEffect} from "react";
 const styleNav = {
 
     display: 'flex',
-    flexFlow: 'row wrap',
+    flexFlow: 'column wrap',
 
-    alignContent: 'center',
-    alignItems: 'center'
 
 }
 
@@ -46,17 +44,31 @@ const styleLogoWrap = {
 const stylePhotoCurtain = {
 
     display: 'inlineGrid',
-    columnCount: 3
+    columnCount: 3,
+    justifyContent: 'center',
 
 }
 
+const styleNavbar = {
 
-const SearchBar = ({choosePhoto}) => {
+    display: 'flex',
+    flexFlow: 'row'
+
+
+}
+
+const styleImage = {
+    cursor: 'pointer',
+}
+
+
+const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility}) => {
 
     const [search, setSearch] = useState("");
     const [searchedPhotos, setSearchedPhotos] = useState([]);
 
     useEffect(() => {
+        changeCurtainVisibility(true);
         searchImgQuery(search);
     }, [search]);
 
@@ -78,21 +90,27 @@ const SearchBar = ({choosePhoto}) => {
 
     return (
         <header className="top-nav" style={styleNav}>
-            <div className='logo-wrap' style={styleLogoWrap}>
-                <a href='#'><img className='logo' src={require('../static_files/orderlylogo.png')}
-                                 style={styleLogo}></img></a>
-            </div>
-            <div className="search-bar" style={styleSearch}>
+            <div className='navbar' style={styleNavbar}>
+                <div className='logo-wrap' style={styleLogoWrap}>
+                    <a><img className='logo' src={require('../static_files/orderlylogo.png')}
+                            style={styleLogo} alt='Webapp logo, simple square stating Orderly'></img></a>
+                </div>
+                <div className="search-bar" style={styleSearch}>
 
-                <input type="text" style={styleSearchBox} className="search-img" placeholder="Search image"
-                       onInput={(e) => {
-                           setSearch(e.target.value)
-                       }}/>
+                    <input type="text" style={styleSearchBox} className="search-img" placeholder="Search image"
+                           onInput={(e) => {
+                               setSearch(e.target.value)
+                           }}/>
+                </div>
             </div>
             <div className='photo-curtain' style={stylePhotoCurtain}>
-                {searchedPhotos.results?.map((singlePhoto) => {
-                    return (<figure><a onClick={e => choosePhoto(singlePhoto.urls.small, e)}><img src={`${singlePhoto.urls.small}`} key={singlePhoto.id} alt={singlePhoto.alt}/></a></figure>)
-                })}
+                {isCurtainVisible ?
+                    searchedPhotos.results?.map((singlePhoto) => {
+                    return (<figure key={singlePhoto.id} alt={singlePhoto.alt} style={styleImage}><a
+                        onClick={e => choosePhoto(singlePhoto.urls.small, e)}><img src={`${singlePhoto.urls.small}`}
+                                                                                   key={singlePhoto.id}
+                                                                                   alt={singlePhoto.alt}/></a></figure>)
+                }) : null}
             </div>
         </header>
 

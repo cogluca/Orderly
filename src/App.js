@@ -6,20 +6,21 @@ import {useState} from "react";
 function App() {
 
     const [chosenImageUrl, setChosenImageUrl] = useState("");
-
-
+    const [curtainIsVisible, setCurtainIsVisible] = useState(true);
 
     function handleImageChoice(imageUrl, event){
         event.preventDefault();
         setChosenImageUrl(imageUrl);
+        setCurtainIsVisible(false);
     }
 
     console.log(`Chosen image is: ${chosenImageUrl}`);
 
     return (
         <div className="App">
-            <SearchBar choosePhoto={handleImageChoice} />
-            <Editor chosenImage={chosenImageUrl} />
+            <SearchBar choosePhoto={handleImageChoice} isCurtainVisible ={curtainIsVisible} changeCurtainVisibility={setCurtainIsVisible} />
+            <Editor chosenImage={chosenImageUrl}  />
+            <img src={chosenImageUrl}/>
         </div>
 
     );
