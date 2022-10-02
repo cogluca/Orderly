@@ -51,7 +51,7 @@ const stylePhotoCurtain = {
 }
 
 
-const SearchBar = () => {
+const SearchBar = ({choosePhoto}) => {
 
     const [search, setSearch] = useState("");
     const [searchedPhotos, setSearchedPhotos] = useState([]);
@@ -91,7 +91,7 @@ const SearchBar = () => {
             </div>
             <div className='photo-curtain' style={stylePhotoCurtain}>
                 {searchedPhotos.results?.map((singlePhoto) => {
-                    return (<img src={`${singlePhoto.urls.small}`} key={singlePhoto.id} alt={singlePhoto.alt}/>)
+                    return (<figure><a onClick={e => choosePhoto(singlePhoto.urls.small, e)}><img src={`${singlePhoto.urls.small}`} key={singlePhoto.id} alt={singlePhoto.alt}/></a></figure>)
                 })}
             </div>
         </header>
