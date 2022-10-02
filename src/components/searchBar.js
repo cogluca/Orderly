@@ -62,10 +62,11 @@ const styleImage = {
 }
 
 
-const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility}) => {
+const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility, apiClientId}) => {
 
     const [search, setSearch] = useState("");
     const [searchedPhotos, setSearchedPhotos] = useState([]);
+
 
     useEffect(() => {
         changeCurtainVisibility(true);
@@ -79,7 +80,7 @@ const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility}) => 
             method: "GET",
             mode: "cors",
             headers: {
-                "Authorization": "Client-ID zGEkPWJMvYsSFS8nc7Eku4Zqg2jRE1J4RzmfCFOg868"
+                "Authorization": `Client-ID ${apiClientId}`
             }
         });
 
@@ -106,7 +107,7 @@ const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility}) => 
             <div className='photo-curtain' style={stylePhotoCurtain}>
                 {isCurtainVisible ?
                     searchedPhotos.results?.map((singlePhoto) => {
-                    return (<figure key={singlePhoto.id} alt={singlePhoto.alt} style={styleImage}><a
+                    return (<figure key={singlePhoto.id} style={styleImage}><a
                         onClick={e => choosePhoto(singlePhoto.urls.small, e)}><img src={`${singlePhoto.urls.small}`}
                                                                                    key={singlePhoto.id}
                                                                                    alt={singlePhoto.alt}/></a></figure>)
