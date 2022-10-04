@@ -62,8 +62,8 @@ function Editor() {
             TableCellNode,
             TableRowNode,
             AutoLinkNode,
-            LinkNode
-        ]
+            LinkNode,
+        ],
     }
 
     return (
@@ -74,7 +74,6 @@ function Editor() {
           <MyCustomAutoFocusPlugin/>
           <MarkdownShortcutPlugin transformers={TRANSFORMERS}/>
       </LexicalComposer>
-
     );
 }
 

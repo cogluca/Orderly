@@ -1,38 +1,27 @@
 import {useState, useEffect} from "react";
 
 const styleNav = {
-
     display: 'flex',
     flexFlow: 'column wrap',
-
-
 }
 
 const styleSearch = {
     display: 'row wrap',
     alignContent: 'center',
     flexGrow: '1'
-
 }
 
 const styleSearchBox = {
-
-
     padding: '1.0em 1em',
     fontSize: '1.0em',
     margin: '0.5em',
     width: '90%'
-
-
 }
 
 const styleLogo = {
-
     width: '12em',
     height: 'auto',
     justifySelf: 'left'
-
-
 }
 
 const styleLogoWrap = {
@@ -42,19 +31,14 @@ const styleLogoWrap = {
 }
 
 const stylePhotoCurtain = {
-
     display: 'inlineGrid',
     columnCount: 3,
     justifyContent: 'center',
-
 }
 
 const styleNavbar = {
-
     display: 'flex',
     flexFlow: 'row'
-
-
 }
 
 const styleImage = {

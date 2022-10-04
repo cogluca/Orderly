@@ -20,9 +20,8 @@ function App() {
 
     return (
         <div className="App">
-            <SearchBar choosePhoto={handleImageChoice} isCurtainVisible ={curtainIsVisible} changeCurtainVisibility={setCurtainIsVisible} apiClientId={apiClientId} />
-            <Editor chosenImage={chosenImageUrl}  />
-            <img src={chosenImageUrl} alt='chosen image displayed in raw manner'/>
+            <SearchBar choosePhoto={handleImageChoice} isCurtainVisible = {curtainIsVisible} changeCurtainVisibility={setCurtainIsVisible} apiClientId={apiClientId} />
+            <img className='template-image' src={chosenImageUrl} alt='chosen image displayed in raw manner'/>
         </div>
 
     );

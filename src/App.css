@@ -9,6 +9,12 @@
   pointer-events: none;
 }
 
+.template-image {
+  width: 50%;
+  height: auto;
+  align-self: center;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
