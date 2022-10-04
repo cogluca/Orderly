@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 
  const IncrementalForm = () => {
@@ -20,9 +20,29 @@ import {useState} from "react";
          7: 'Why would you like to feel this way again ?'
      }
 
+     const answerBooklet = {
+         1: '',
+         2: '',
+         3: '',
+         4: '',
+         5: '',
+         6: '',
+         7: '',
+     } //doesn't persist across renderings
+
+
+     function handleQuestionConfirm(e, currentQuestion) {
+         e.preventDefault();
+         answerBooklet[currentQuestion] = e;
+     }
+
+     function handleRoutingToPreviousQuestion(currentQuestion) {
+         setCurrentQuestion(currentQuestion--);
+     }
+
+
 
      const [currentQuestion, setCurrentQuestion] = useState(0);
-     const [questionState, setQuestionState] = useState("");
 
 
      //onButton Click, what does it do ? saves the state of the single question into its relative spot and proceeds, that question is then retrievable through
@@ -35,11 +55,10 @@ import {useState} from "react";
 
          <form>
              <label>
-                 {questionState}
-
+                 {questionBooklet[currentQuestion]}
              <input type='text'/>
-
              <button>Previous</button>
+             <button onClick={(e, currentQuestion) => handleQuestionConfirm(e.target.value, currentQuestion)}>Ok</button>
              <button>Next</button>
              </label>
 
