@@ -2,6 +2,7 @@ import './App.css';
 import {Editor} from "./components/editor";
 import SearchBar from "./components/searchBar";
 import {useState} from "react";
+import IncrementalForm from "./components/incrementalForm";
 
 function App() {
 
@@ -21,7 +22,9 @@ function App() {
     return (
         <div className="App">
             <SearchBar choosePhoto={handleImageChoice} isCurtainVisible = {curtainIsVisible} changeCurtainVisibility={setCurtainIsVisible} apiClientId={apiClientId} />
-            <img className='template-image' src={chosenImageUrl} alt='chosen image displayed in raw manner'/>
+            {chosenImageUrl !== "" ? <img className='template-image' src={chosenImageUrl} alt='chosen image displayed in raw manner'/> : null }
+
+            <IncrementalForm/>
         </div>
 
     );
