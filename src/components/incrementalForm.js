@@ -81,6 +81,8 @@ const IncrementalForm = () => {
             ...prevState,
             [currentQuestion]: inputValue[0].value,
         }));
+        setCurrentQuestion(++currentQuestion);
+
     }
 
     useEffect(() => console.log(answerBooklet), [answerBooklet])
@@ -105,6 +107,13 @@ const IncrementalForm = () => {
     }, [currentQuestion])
 
 
+    useEffect(()=> {
+
+        const textArea = document.getElementsByClassName('answer-input');
+        textArea[0].value = answerBooklet[currentQuestion];
+        console.log(answerBooklet[currentQuestion]);
+
+    }, [currentQuestion])
     //onButton Click, what does it do ? saves the state of the single question into its relative spot and proceeds, that question is then retrievable through
     //the current question that we're at, and navigating forward or backward actually increases or decreases the number question
     //number question is then bound to what gets rendered as the current question
@@ -118,7 +127,7 @@ const IncrementalForm = () => {
         <form style={styleForm}>
             <label style={styleLabel}>
                 {currentTextualQuestion}
-                <textarea className='answer-input' style={styleTextArea} placeholder='Answer here ...'/>
+                <textarea className='answer-input' style={styleTextArea} placeholder='Answer here ...'></textarea>
                 <div style={styleButtons}>
                     <button onClick={(e) => handleRoutingToPreviousQuestion(e, currentQuestion)}>Previous</button>
                     <button type='submit' onClick={(e) => handleQuestionConfirm(e, currentQuestion)}>Ok</button>

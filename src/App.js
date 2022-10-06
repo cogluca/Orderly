@@ -26,8 +26,7 @@ function App() {
             <section className='interpretation-area'>
                 {chosenImageUrl !== "" ? <img className='template-image' src={chosenImageUrl}
                                               alt='chosen image displayed in raw manner'/> : null}
-
-                <IncrementalForm/>
+                {chosenImageUrl !== ""? <IncrementalForm/> : <p>Choose an image first 😁</p>}
             </section>
         </div>
 
