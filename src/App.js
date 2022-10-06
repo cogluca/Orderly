@@ -1,23 +1,38 @@
 import './App.css';
 import {Editor} from "./components/editor";
 import SearchBar from "./components/searchBar";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import IncrementalForm from "./components/incrementalForm";
 
 function App() {
 
-    const [chosenImageUrl, setChosenImageUrl] = useState("");
+    const loadedImageUrl = window.localStorage.getItem('chosenImage')? JSON.parse(window.localStorage.getItem('chosenImage')): "";
+
+    const [chosenImageUrl, setChosenImageUrl] = useState(loadedImageUrl);
     const [curtainIsVisible, setCurtainIsVisible] = useState(true);
 
     const apiClientId = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
+
+    useEffect( ()=> {
+        setImageOnStorage();
+        },[chosenImageUrl])
+
+    async function setImageOnStorage () {
+        await window.localStorage.setItem('chosenImage', JSON.stringify(chosenImageUrl));
+        console.log(`I'm saving the image ${JSON.parse(window.localStorage.getItem('chosenImage'))}`);
+    }
+
+    async function setImageOnDisplay() {
+        await setChosenImageUrl(JSON.parse(window.localStorage.getItem('chosenImage')));
+        console.log(`chosen image on local storage is ${JSON.parse(window.localStorage.getItem('chosenImage'))}`);
+
+    }
 
     function handleImageChoice(imageUrl, event) {
         event.preventDefault();
         setChosenImageUrl(imageUrl);
         setCurtainIsVisible(false);
     }
-
-    console.log(`Chosen image is: ${chosenImageUrl}`);
 
     return (
         <div className="App">

@@ -35,7 +35,6 @@ const styleTextArea = {
     padding: '1em',
     alignSelf: 'center',
 
-
 }
 
 
@@ -46,7 +45,10 @@ const IncrementalForm = () => {
     //I need to maintain a state regarding at which question I'm at
     //I need to maintain overall the answers to each question
     //I need to render the actual forms one step at a time
-    const [currentQuestion, setCurrentQuestion] = useState(1);
+    const loadedCurrentQuestion = window.localStorage.getItem('questionAt') ? Number(JSON.parse(window.localStorage.getItem('questionAt'))) : 1
+
+
+    const [currentQuestion, setCurrentQuestion] = useState(loadedCurrentQuestion);
     const [currentTextualQuestion, setCurrentTextualQuestion] = useState('');
 
     const questionBooklet = {
@@ -59,7 +61,7 @@ const IncrementalForm = () => {
         7: 'Why would you like to feel this way again ?'
     }
 
-    const [answerBooklet, setAnswerBooklet] = useState({
+    const loadedBooklet = window.localStorage.getItem('answerState') ? JSON.parse(window.localStorage.getItem('answerState')) : {
         1: '',
         2: '',
         3: '',
@@ -67,8 +69,19 @@ const IncrementalForm = () => {
         5: '',
         6: '',
         7: '',
-    });
+    }
 
+
+    const [answerBooklet, setAnswerBooklet] = useState(loadedBooklet);
+
+    useEffect(()=> {
+        window.localStorage.setItem('answerState', JSON.stringify(answerBooklet));
+    }, [answerBooklet])
+
+    useEffect(()=> {
+        window.localStorage.setItem('questionAt', JSON.stringify(currentQuestion));
+        },
+        [currentQuestion])
 
     async function handleQuestionConfirm(e, currentQuestion) {
 
