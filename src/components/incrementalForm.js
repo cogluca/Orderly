@@ -33,7 +33,7 @@ const styleTextArea = {
 
     borderRadius: '0.6em',
     padding: '1em',
-    alignSelf: 'center'
+    alignSelf: 'center',
 
 
 }
@@ -114,6 +114,16 @@ const IncrementalForm = () => {
         console.log(answerBooklet[currentQuestion]);
 
     }, [currentQuestion])
+
+
+    function adjustTextAreaSize(){
+
+        const textArea = document.getElementsByClassName('answer-input');
+        textArea[0].style.height = "1px";
+        textArea[0].style.height = textArea[0].scrollHeight + "px";
+
+    }
+
     //onButton Click, what does it do ? saves the state of the single question into its relative spot and proceeds, that question is then retrievable through
     //the current question that we're at, and navigating forward or backward actually increases or decreases the number question
     //number question is then bound to what gets rendered as the current question
@@ -127,7 +137,7 @@ const IncrementalForm = () => {
         <form style={styleForm}>
             <label style={styleLabel}>
                 {currentTextualQuestion}
-                <textarea className='answer-input' style={styleTextArea} placeholder='Answer here ...'></textarea>
+                <textarea className='answer-input' style={styleTextArea} placeholder='Answer here ...' onInput={adjustTextAreaSize}></textarea>
                 <div style={styleButtons}>
                     <button onClick={(e) => handleRoutingToPreviousQuestion(e, currentQuestion)}>Previous</button>
                     <button type='submit' onClick={(e) => handleQuestionConfirm(e, currentQuestion)}>Ok</button>
