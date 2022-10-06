@@ -3,6 +3,7 @@ import './App.css';
 import SearchBar from "./components/searchBar";
 import {useEffect, useState} from "react";
 import IncrementalForm from "./components/incrementalForm";
+import InitialExplanation from "./components/initialExplanation";
 
 function App() {
 
@@ -35,7 +36,7 @@ function App() {
             <section className='interpretation-area'>
                 {chosenImageUrl !== "" ? <img className='template-image' src={chosenImageUrl}
                                               alt='chosen image'/> : null}
-                {chosenImageUrl !== ""? <IncrementalForm/> : <p>Choose an image first 😁</p>}
+                {chosenImageUrl !== ""? <IncrementalForm/> : <InitialExplanation/>}
             </section>
         </div>
 

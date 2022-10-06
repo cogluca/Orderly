@@ -74,14 +74,24 @@ const IncrementalForm = () => {
 
     const [answerBooklet, setAnswerBooklet] = useState(loadedBooklet);
 
-    useEffect(()=> {
+    useEffect(() => {
         window.localStorage.setItem('answerState', JSON.stringify(answerBooklet));
     }, [answerBooklet])
 
-    useEffect(()=> {
-        window.localStorage.setItem('questionAt', JSON.stringify(currentQuestion));
+    useEffect(() => {
+            window.localStorage.setItem('questionAt', JSON.stringify(currentQuestion));
+            setCurrentTextualQuestion(questionBooklet[currentQuestion])
         },
         [currentQuestion])
+
+
+    useEffect(() => {
+
+        const textArea = document.getElementsByClassName('answer-input');
+        textArea[0].value = answerBooklet[currentQuestion];
+        console.log(answerBooklet[currentQuestion]);
+
+    }, [currentQuestion])
 
     async function handleQuestionConfirm(e, currentQuestion) {
 
@@ -111,25 +121,9 @@ const IncrementalForm = () => {
         e.preventDefault();
         setCurrentQuestion(--currentQuestion);
         console.log(currentQuestion);
-
     }
 
-
-    useEffect(() => {
-        setCurrentTextualQuestion(questionBooklet[currentQuestion])
-    }, [currentQuestion])
-
-
-    useEffect(()=> {
-
-        const textArea = document.getElementsByClassName('answer-input');
-        textArea[0].value = answerBooklet[currentQuestion];
-        console.log(answerBooklet[currentQuestion]);
-
-    }, [currentQuestion])
-
-
-    function adjustTextAreaSize(){
+    function adjustTextAreaSize() {
 
         const textArea = document.getElementsByClassName('answer-input');
         textArea[0].style.height = "1px";
@@ -137,20 +131,14 @@ const IncrementalForm = () => {
 
     }
 
-    //onButton Click, what does it do ? saves the state of the single question into its relative spot and proceeds, that question is then retrievable through
-    //the current question that we're at, and navigating forward or backward actually increases or decreases the number question
-    //number question is then bound to what gets rendered as the current question
-
-
-    //On ok button I set the object
-
 
     return (
 
         <form style={styleForm}>
             <label style={styleLabel}>
                 {currentTextualQuestion}
-                <textarea className='answer-input' style={styleTextArea} placeholder='Answer here ...' onInput={adjustTextAreaSize}></textarea>
+                <textarea className='answer-input' style={styleTextArea} placeholder='Answer here ...'
+                          onInput={adjustTextAreaSize}></textarea>
                 <div style={styleButtons}>
                     <button onClick={(e) => handleRoutingToPreviousQuestion(e, currentQuestion)}>Previous</button>
                     <button type='submit' onClick={(e) => handleQuestionConfirm(e, currentQuestion)}>Ok</button>
