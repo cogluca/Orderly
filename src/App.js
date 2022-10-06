@@ -1,5 +1,5 @@
 import './App.css';
-import {Editor} from "./components/editor";
+
 import SearchBar from "./components/searchBar";
 import {useEffect, useState} from "react";
 import IncrementalForm from "./components/incrementalForm";
@@ -22,12 +22,6 @@ function App() {
         console.log(`I'm saving the image ${JSON.parse(window.localStorage.getItem('chosenImage'))}`);
     }
 
-    async function setImageOnDisplay() {
-        await setChosenImageUrl(JSON.parse(window.localStorage.getItem('chosenImage')));
-        console.log(`chosen image on local storage is ${JSON.parse(window.localStorage.getItem('chosenImage'))}`);
-
-    }
-
     function handleImageChoice(imageUrl, event) {
         event.preventDefault();
         setChosenImageUrl(imageUrl);
@@ -40,7 +34,7 @@ function App() {
                        changeCurtainVisibility={setCurtainIsVisible} apiClientId={apiClientId}/>
             <section className='interpretation-area'>
                 {chosenImageUrl !== "" ? <img className='template-image' src={chosenImageUrl}
-                                              alt='chosen image displayed in raw manner'/> : null}
+                                              alt='chosen image'/> : null}
                 {chosenImageUrl !== ""? <IncrementalForm/> : <p>Choose an image first 😁</p>}
             </section>
         </div>
