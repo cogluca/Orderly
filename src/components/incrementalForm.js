@@ -1,6 +1,44 @@
 import {useEffect, useState} from "react";
 
 
+const styleForm = {
+
+    alignSelf: 'center',
+
+
+}
+
+const styleLabel = {
+
+    display: 'flex',
+    flexFlow: 'column',
+    gap: '1em',
+    justifySelf: 'center',
+    borderStyle: 'solid',
+    padding: '1em',
+    borderRadius: '0.6em'
+
+
+}
+
+const styleButtons = {
+
+    display: 'flex',
+    flexFlow: 'row',
+    justifyContent: 'center',
+
+}
+
+const styleTextArea = {
+
+    borderRadius: '0.6em',
+    padding: '1em',
+    alignSelf: 'center'
+
+
+}
+
+
 const IncrementalForm = () => {
 
 
@@ -29,7 +67,7 @@ const IncrementalForm = () => {
         5: '',
         6: '',
         7: '',
-    })
+    });
 
 
     async function handleQuestionConfirm(e, currentQuestion) {
@@ -40,18 +78,25 @@ const IncrementalForm = () => {
         console.log(inputValue[0].value);
 
         await setAnswerBooklet((prevState) => ({
-                ...prevState,
-                [currentQuestion]: inputValue[0].value,
-            }));
+            ...prevState,
+            [currentQuestion]: inputValue[0].value,
+        }));
     }
 
-    useEffect(()=>console.log(answerBooklet),[answerBooklet])
+    useEffect(() => console.log(answerBooklet), [answerBooklet])
 
 
-    function handleRoutingToPreviousQuestion(e, currentQuestion) {
+    function handleRoutingToNextQuestion(e, currentQuestion) {
         e.preventDefault();
         setCurrentQuestion(++currentQuestion);
         console.log(currentQuestion);
+    }
+
+    function handleRoutingToPreviousQuestion(e, currentQuestion) {
+        e.preventDefault();
+        setCurrentQuestion(--currentQuestion);
+        console.log(currentQuestion);
+
     }
 
 
@@ -70,16 +115,16 @@ const IncrementalForm = () => {
 
     return (
 
-        <form>
-            <label>
+        <form style={styleForm}>
+            <label style={styleLabel}>
                 {currentTextualQuestion}
-                <input className='answer-input' type='text' placeholder='Answer here ...'/>
-                <button>Previous</button>
-                <button type='submit' onClick={(e) => handleQuestionConfirm(e, currentQuestion)}>Ok</button>
-                <button  onClick={  (e) => handleRoutingToPreviousQuestion(e, currentQuestion)}>Next</button>
+                <textarea className='answer-input' style={styleTextArea} placeholder='Answer here ...'/>
+                <div style={styleButtons}>
+                    <button onClick={(e) => handleRoutingToPreviousQuestion(e, currentQuestion)}>Previous</button>
+                    <button type='submit' onClick={(e) => handleQuestionConfirm(e, currentQuestion)}>Ok</button>
+                    <button onClick={(e) => handleRoutingToNextQuestion(e, currentQuestion)}>Next</button>
+                </div>
             </label>
-
-
         </form>
 
         //I need to change a question at display as soon as through a click I change the

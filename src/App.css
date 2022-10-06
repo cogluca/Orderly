@@ -15,6 +15,14 @@
   align-self: center;
 }
 
+.interpretation-area {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 2em 4em;
+  gap: 1em;
+  justify-content: center;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

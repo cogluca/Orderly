@@ -11,7 +11,7 @@ function App() {
 
     const apiClientId = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
 
-    function handleImageChoice(imageUrl, event){
+    function handleImageChoice(imageUrl, event) {
         event.preventDefault();
         setChosenImageUrl(imageUrl);
         setCurtainIsVisible(false);
@@ -21,10 +21,14 @@ function App() {
 
     return (
         <div className="App">
-            <SearchBar choosePhoto={handleImageChoice} isCurtainVisible = {curtainIsVisible} changeCurtainVisibility={setCurtainIsVisible} apiClientId={apiClientId} />
-            {chosenImageUrl !== "" ? <img className='template-image' src={chosenImageUrl} alt='chosen image displayed in raw manner'/> : null }
+            <SearchBar choosePhoto={handleImageChoice} isCurtainVisible={curtainIsVisible}
+                       changeCurtainVisibility={setCurtainIsVisible} apiClientId={apiClientId}/>
+            <section className='interpretation-area'>
+                {chosenImageUrl !== "" ? <img className='template-image' src={chosenImageUrl}
+                                              alt='chosen image displayed in raw manner'/> : null}
 
-            <IncrementalForm/>
+                <IncrementalForm/>
+            </section>
         </div>
 
     );
