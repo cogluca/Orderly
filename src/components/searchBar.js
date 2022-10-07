@@ -51,11 +51,21 @@ const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility, apiC
     const [search, setSearch] = useState("");
     const [searchedPhotos, setSearchedPhotos] = useState([]);
 
+    const debouncedSearchTerm = useDebounce(search,400);
+
 
     useEffect(() => {
         changeCurtainVisibility(true);
-        searchImgQuery(search);
-    }, [search]);
+        if(debouncedSearchTerm){
+            searchImgQuery(debouncedSearchTerm).then((results)=>{
+                setSearchedPhotos(results);
+            })
+        }
+        else {
+            setSearchedPhotos([]);
+        }
+    }, [debouncedSearchTerm]);
+
 
 
     async function searchImgQuery(queryArgument) {
@@ -69,7 +79,30 @@ const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility, apiC
         });
 
         const queryResultJSON = await queryResult.json();
-        setSearchedPhotos(queryResultJSON);
+
+        return queryResultJSON;
+
+    }
+
+    function useDebounce(value, delay) {
+        // State and setters for debounced value
+        const [debouncedValue, setDebouncedValue] = useState(value);
+        useEffect(
+            () => {
+                // Update debounced value after delay
+                const handler = setTimeout(() => {
+                    setDebouncedValue(value);
+                }, delay);
+                // Cancel the timeout if value changes (also on delay change or unmount)
+                // This is how we prevent debounced value from updating if value is changed ...
+                // .. within the delay period. Timeout gets cleared and restarted.
+                return () => {
+                    clearTimeout(handler);
+                };
+            },
+            [value, delay] // Only re-call effect if value or delay changes
+        );
+        return debouncedValue;
     }
 
 
