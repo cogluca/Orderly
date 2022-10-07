@@ -93,9 +93,8 @@ const IncrementalForm = () => {
 
     }, [currentQuestion])
 
-    async function handleQuestionConfirm(e, currentQuestion) {
+    async function handleQuestionConfirm(currentQuestion) {
 
-        e.preventDefault();
         const inputValue = await document.getElementsByClassName('answer-input');
 
         console.log(inputValue[0].value);
@@ -104,7 +103,6 @@ const IncrementalForm = () => {
             ...prevState,
             [currentQuestion]: inputValue[0].value,
         }));
-        setCurrentQuestion(++currentQuestion);
 
     }
 
@@ -138,10 +136,9 @@ const IncrementalForm = () => {
             <label style={styleLabel}>
                 {currentTextualQuestion}
                 <textarea className='answer-input' style={styleTextArea} placeholder='Answer here ...'
-                          onInput={adjustTextAreaSize}></textarea>
+                          onInput={adjustTextAreaSize} onChange={()=>handleQuestionConfirm(currentQuestion)}></textarea>
                 <div style={styleButtons}>
                     <button onClick={(e) => handleRoutingToPreviousQuestion(e, currentQuestion)}>Previous</button>
-                    <button type='submit' onClick={(e) => handleQuestionConfirm(e, currentQuestion)}>Ok</button>
                     <button onClick={(e) => handleRoutingToNextQuestion(e, currentQuestion)}>Next</button>
                 </div>
             </label>

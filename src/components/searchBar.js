@@ -92,16 +92,14 @@ const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility, apiC
                 {isCurtainVisible ?
                     searchedPhotos.results?.map((singlePhoto) => {
                     return (<figure key={singlePhoto.id} style={styleImage}><a
-                        onClick={e => choosePhoto(singlePhoto.urls.small, e)}><img src={`${singlePhoto.urls.small}`}
-                                                                                   key={singlePhoto.id}
+                        onClick={e => choosePhoto(singlePhoto.urls.small, e)}><img src={`${singlePhoto.urls.small}`} key={singlePhoto.id}
                                                                                    alt={singlePhoto.alt}/></a></figure>)
                 }) : null}
             </div>
         </header>
 
     );
-
-
+    
 }
 
 export default SearchBar;

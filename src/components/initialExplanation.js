@@ -1,14 +1,9 @@
 const InitialExplanation = () => {
 
     const styleExplanation = {
-
         display: 'flex',
         flexFlow: 'column',
         gap: '2em',
-
-
-
-
     }
 
     const styleBulletPoint = {
