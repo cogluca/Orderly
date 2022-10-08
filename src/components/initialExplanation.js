@@ -29,6 +29,7 @@ const InitialExplanation = () => {
 
     return (
         <section style={styleSection}>
+
             <div style={styleWhatIsIt}>
                 <h1>What is this for ?</h1>
                 <p style={styleParagraph}>It's a a way to declutter your brain from both the day to day emotions that clog your brain and to understand the long held ones</p>
