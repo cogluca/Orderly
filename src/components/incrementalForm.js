@@ -166,7 +166,7 @@ const IncrementalForm = ({isQuestionnaireToReset, setFinalResult}) => {
 
     }
 
-    function displayFinalResult(setFinalResult) {
+   async function displayFinalResult(setFinalResult) {
 
         setFinalResult(true);
 
@@ -184,14 +184,18 @@ const IncrementalForm = ({isQuestionnaireToReset, setFinalResult}) => {
 
         setFinalDisplay(mergedQuestionnaire);
 
+        const previousFormEndDisplay = await document.getElementsByClassName('result-display');
+        previousFormEndDisplay[0].style.display = 'none';
 
-        const resultDisplay = document.getElementsByClassName('finished-display');
+        const resultDisplay = await document.getElementsByClassName('finished-display');
         resultDisplay[0].style.display = 'flex';
         resultDisplay[0].style.flexFlow = 'column';
         resultDisplay[0].style.gap = '1em'
 
-        const previousFormEndDisplay = document.getElementsByClassName('result-display');
-        previousFormEndDisplay[0].style.display = 'none';
+        await resultDisplay[0].scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
 
     }
 
