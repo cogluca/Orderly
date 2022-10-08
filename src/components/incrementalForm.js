@@ -49,19 +49,27 @@ const styleButton = {
     color: 'white'
 }
 
+const styleFinishedDisplay = {
+    display: 'none'
+}
 
-const IncrementalForm = ({isQuestionnaireToReset}) => {
+
+const IncrementalForm = ({isQuestionnaireToReset, setFinalResult}) => {
 
 
     //I need to display one question at a time
     //I need to maintain a state regarding at which question I'm at
     //I need to maintain overall the answers to each question
     //I need to render the actual forms one step at a time
-    const loadedCurrentQuestion = window.localStorage.getItem('questionAt') ? Number(JSON.parse(window.localStorage.getItem('questionAt'))) : 1
+    const loadedCurrentQuestion = window.localStorage.getItem('questionAt') ? Number(JSON.parse(window.localStorage.getItem('questionAt'))) : 1;
 
 
     const [currentQuestion, setCurrentQuestion] = useState(loadedCurrentQuestion);
     const [currentTextualQuestion, setCurrentTextualQuestion] = useState('');
+
+    const loadedFinalDisplay = window.localStorage.getItem('finalDisplay') ? JSON.parse(window.localStorage.getItem('finalDisplay')) : [];
+
+    const [finalDisplay, setFinalDisplay] = useState(loadedFinalDisplay);
 
     const questionBooklet = {
         1: 'What does this picture remind you off ?',
@@ -98,8 +106,8 @@ const IncrementalForm = ({isQuestionnaireToReset}) => {
         },
         [currentQuestion])
 
-    useEffect(()=>{
-        if(isQuestionnaireToReset){
+    useEffect(() => {
+        if (isQuestionnaireToReset) {
             setCurrentQuestion(1);
             setAnswerBooklet({
                 1: '',
@@ -111,7 +119,7 @@ const IncrementalForm = ({isQuestionnaireToReset}) => {
                 7: '',
             })
         }
-    },[isQuestionnaireToReset])
+    }, [isQuestionnaireToReset])
 
 
     useEffect(() => {
@@ -158,6 +166,35 @@ const IncrementalForm = ({isQuestionnaireToReset}) => {
 
     }
 
+    function displayFinalResult(setFinalResult) {
+
+        setFinalResult(true);
+
+        const mergedQuestionnaire = [];
+
+        for (let i = 0; i <= 7; i++ ) {
+
+            mergedQuestionnaire[i] = {
+                question: questionBooklet[i],
+                answer: answerBooklet[i]
+            }
+
+        }
+        console.log(mergedQuestionnaire);
+
+        setFinalDisplay(mergedQuestionnaire);
+
+
+        const resultDisplay = document.getElementsByClassName('finished-display');
+        resultDisplay[0].style.display = 'flex';
+        resultDisplay[0].style.flexFlow = 'column';
+        resultDisplay[0].style.gap = '1em'
+
+        const previousFormEndDisplay = document.getElementsByClassName('result-display');
+        previousFormEndDisplay[0].style.display = 'none';
+
+    }
+
 
     return (
         <>
@@ -169,18 +206,35 @@ const IncrementalForm = ({isQuestionnaireToReset}) => {
                                   onInput={adjustTextAreaSize}
                                   onChange={() => handleQuestionConfirm(currentQuestion)}></textarea>
                         <div style={styleButtons}>
-                            <button style={styleButton} onClick={(e) => handleRoutingToPreviousQuestion(e, currentQuestion)}>Previous
+                            <button style={styleButton}
+                                    onClick={(e) => handleRoutingToPreviousQuestion(e, currentQuestion)}>Previous
                             </button>
-                            <button style={styleButton} onClick={(e) => handleRoutingToNextQuestion(e, currentQuestion)}>Next</button>
+                            <button style={styleButton}
+                                    onClick={(e) => handleRoutingToNextQuestion(e, currentQuestion)}>Next
+                            </button>
                         </div>
                     </label>
                 </form>
                 :
-                <div style={styleFinishedArea}>
+                <div className='result-display' style={styleFinishedArea}>
                     <h3>You're all set and done</h3>
-                    <button style={styleButton}>Check answers</button>
+                    <button style={styleButton} onClick={() => {
+                        displayFinalResult(setFinalResult)
+                    }}>Check answers
+                    </button>
                 </div>
             }
+            <div style={styleFinishedDisplay} className='finished-display'>
+                <h1>Are you seeing any patterns ?</h1>
+                {finalDisplay.map((element, index)=>
+                    <section key={index}>
+                        <h3>{element.question}</h3>
+                        <p>{element.answer}</p>
+                    </section>
+
+                )
+                }
+            </div>
         </>
         //I need to change a question at display as soon as through a click I change the
 

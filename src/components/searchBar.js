@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import {useEffect, useState} from "react";
 
 const styleNav = {
     display: 'flex',
@@ -54,7 +54,6 @@ const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility, apiC
 
     const debouncedSearchTerm = useDebounce(search,300);
 
-
     useEffect(() => {
         changeCurtainVisibility(true);
         if(debouncedSearchTerm){
@@ -62,7 +61,7 @@ const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility, apiC
                 setSearchedPhotos(results);
             })
         }
-        else {
+        else{
             setSearchedPhotos([]);
         }
     }, [debouncedSearchTerm]);
@@ -81,9 +80,7 @@ const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility, apiC
             }
         });
 
-        const queryResultJSON = await queryResult.json();
-
-        return queryResultJSON;
+        return await queryResult.json();
 
     }
 

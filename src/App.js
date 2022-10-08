@@ -14,11 +14,23 @@ function App() {
 
     const [isQuestionnaireToReset, setIsQuestionnaireToReset] = useState(false);
 
+    const [displayFinalResult, setDisplayFinalResult] = useState(false);
+
     const apiClientId = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
 
     useEffect( ()=> {
         setImageOnStorage();
         },[chosenImageUrl])
+
+
+    useEffect(()=>{
+        if(displayFinalResult){
+
+            const interpretationArea = document.getElementsByClassName('interpretation-area');
+            interpretationArea[0].style.flexFlow = 'column';
+
+        }
+    },[displayFinalResult])
 
     async function setImageOnStorage () {
         await window.localStorage.setItem('chosenImage', JSON.stringify(chosenImageUrl));
@@ -36,6 +48,7 @@ function App() {
         setCurtainIsVisible(false);
     }
 
+
     return (
         <div className="App">
             <SearchBar choosePhoto={handleImageChoice} isCurtainVisible={curtainIsVisible}
@@ -43,7 +56,7 @@ function App() {
             <section className='interpretation-area'>
                 {chosenImageUrl !== "" ? <img className='template-image' src={chosenImageUrl}
                                               alt='chosen image'/> : null}
-                {chosenImageUrl !== ""? <IncrementalForm isQuestionnaireToReset={isQuestionnaireToReset}/> : <InitialExplanation/>}
+                {chosenImageUrl !== ""? <IncrementalForm isQuestionnaireToReset={isQuestionnaireToReset} setFinalResult={setDisplayFinalResult}/> : <InitialExplanation/>}
             </section>
         </div>
 
