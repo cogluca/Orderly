@@ -51,7 +51,7 @@ const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility, apiC
     const [search, setSearch] = useState("");
     const [searchedPhotos, setSearchedPhotos] = useState([]);
 
-    const debouncedSearchTerm = useDebounce(search,400);
+    const debouncedSearchTerm = useDebounce(search,300);
 
 
     useEffect(() => {
