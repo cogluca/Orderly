@@ -21,7 +21,8 @@ const styleSearchBox = {
 const styleLogo = {
     width: '12em',
     height: 'auto',
-    justifySelf: 'left'
+    justifySelf: 'left',
+    cursor: 'pointer'
 }
 
 const styleLogoWrap = {
@@ -46,7 +47,7 @@ const styleImage = {
 }
 
 
-const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility, apiClientId}) => {
+const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility, apiClientId, resetQuestionnaire}) => {
 
     const [search, setSearch] = useState("");
     const [searchedPhotos, setSearchedPhotos] = useState([]);
@@ -65,6 +66,8 @@ const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility, apiC
             setSearchedPhotos([]);
         }
     }, [debouncedSearchTerm]);
+
+
 
 
 
@@ -108,7 +111,7 @@ const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility, apiC
         <header className="top-nav" style={styleNav}>
             <div className='navbar' style={styleNavbar}>
                 <div className='logo-wrap' style={styleLogoWrap}>
-                    <a><img className='logo' src={require('../static_files/orderlylogo.png')}
+                    <a onClick={resetQuestionnaire}><img className='logo' src={require('../static_files/orderlylogo.png')}
                             style={styleLogo} alt='Webapp logo, simple square stating Orderly'></img></a>
                 </div>
                 <div className="search-bar" style={styleSearch}>

@@ -27,6 +27,9 @@ const InitialExplanation = () => {
                 <li style={styleBulletPoint}>
                     Remember to be open minded as you are an open ocean of unexpressed feelings ❤️
                 </li>
+                <li style={styleBulletPoint}>
+                    If you want to reset the questionnaire click on the logo 👀
+                </li>
             </ul>
         </div>
 

@@ -12,6 +12,8 @@ function App() {
     const [chosenImageUrl, setChosenImageUrl] = useState(loadedImageUrl);
     const [curtainIsVisible, setCurtainIsVisible] = useState(true);
 
+    const [isQuestionnaireToReset, setIsQuestionnaireToReset] = useState(false);
+
     const apiClientId = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
 
     useEffect( ()=> {
@@ -23,6 +25,11 @@ function App() {
         console.log(`I'm saving the image ${JSON.parse(window.localStorage.getItem('chosenImage'))}`);
     }
 
+    function resetQuestionnaire() {
+        setIsQuestionnaireToReset(true);
+        setChosenImageUrl("");
+    }
+
     function handleImageChoice(imageUrl, event) {
         event.preventDefault();
         setChosenImageUrl(imageUrl);
@@ -32,11 +39,11 @@ function App() {
     return (
         <div className="App">
             <SearchBar choosePhoto={handleImageChoice} isCurtainVisible={curtainIsVisible}
-                       changeCurtainVisibility={setCurtainIsVisible} apiClientId={apiClientId}/>
+                       changeCurtainVisibility={setCurtainIsVisible} apiClientId={apiClientId} resetQuestionnaire={resetQuestionnaire}/>
             <section className='interpretation-area'>
                 {chosenImageUrl !== "" ? <img className='template-image' src={chosenImageUrl}
                                               alt='chosen image'/> : null}
-                {chosenImageUrl !== ""? <IncrementalForm/> : <InitialExplanation/>}
+                {chosenImageUrl !== ""? <IncrementalForm isQuestionnaireToReset={isQuestionnaireToReset}/> : <InitialExplanation/>}
             </section>
         </div>
 

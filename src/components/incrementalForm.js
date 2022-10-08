@@ -50,7 +50,7 @@ const styleButton = {
 }
 
 
-const IncrementalForm = () => {
+const IncrementalForm = ({isQuestionnaireToReset}) => {
 
 
     //I need to display one question at a time
@@ -97,6 +97,21 @@ const IncrementalForm = () => {
             }
         },
         [currentQuestion])
+
+    useEffect(()=>{
+        if(isQuestionnaireToReset){
+            setCurrentQuestion(1);
+            setAnswerBooklet({
+                1: '',
+                2: '',
+                3: '',
+                4: '',
+                5: '',
+                6: '',
+                7: '',
+            })
+        }
+    },[isQuestionnaireToReset])
 
 
     useEffect(() => {
