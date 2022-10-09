@@ -44,5 +44,7 @@ like Firebase
 
 - Learned how to hide API Keys with environmental variables and .env files and serve them through process.env in both Js and React
 
+- Learned how to deploy an application on Vercel and serve the environmental variables through project configurations on the platform
+
 
 
