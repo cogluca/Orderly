@@ -1,4 +1,6 @@
-# Searchly
+# Orderly
+
+[Orderly deployed on Vercel](https://orderly-cogluca.vercel.app/)
 
 Minimal prototype simulating a rubber duck 🐤 questioning process. The intent is to disengage the developer from its current problem solving to instead work
 on reducing some emotional friction that is holding him back in the moment.
