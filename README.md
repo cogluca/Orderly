@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Searchly
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Minimal prototype simulating a rubber duck 🐤 questioning process. The intent is to disengage the developer from its current problem solving to instead work
+on reducing some emotional friction that is holding him back in the moment.
 
-## Available Scripts
+The process is facilitated by images that are then analyzed through a questionnaire to discover what is the emotional difficulty at hand.
 
-In the project directory, you can run:
+## Tools
+The front end has been developed with HTML, CSS, React with functional components. On some instances some DOM manipulation through Javascript has been necessary.
 
-### `npm start`
+I chose to implement the persistence level on local storage for maintanence ease and to keep the learning plan scope intact, otherwise it would have needed some backend as a service
+like Firebase
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## What I learned
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+- Learned to use props for parent-child unidirectional communication (passing down functions, variables and states)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+- Learned the use of some React Hooks for the component lifecycle
+   - Learned how to handle state through useState and how to lift state up to allow more than simple unidirectional (from parent to child and between siblings) communication
+   - Learned how to use useEffect for dynamic rendering on state changes, essentially reproducing the observer observable pattern
+   - Learned how to create a custom Hook to allow personalized functions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Learned to use a debouncer to ease the number of calls on the API and limit resource usage, I used it on the search function and needed to understand a proper wait time
+  for the user not to feel like he has been waiting for too much, for this reason I've chose 400ms as a debouncer wait time according to Doherty's Treshold (a UX Rule): a maximum wait time for the
+  user not to feel like the system has been taking too much
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+- Learned how to create an incremental form that displays questions progressively to ease the cognitive load on the user
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Reviewed how to make API calls through the native Fetch function in order to grab images from a third-party API and serve them to the user
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Learned how to change the cursor on component mouse over to signal to the user that an action is possible
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Reviewed some basic functions on Javascript
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+- Learned how to hide API Keys with environmental variables and .env files and serve them through process.env in both Js and React
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

@@ -173,13 +173,12 @@ const IncrementalForm = ({isQuestionnaireToReset, setFinalResult}) => {
         const mergedQuestionnaire = [];
 
         for (let i = 0; i <= 7; i++ ) {
-
             mergedQuestionnaire[i] = {
                 question: questionBooklet[i],
                 answer: answerBooklet[i]
             }
-
         }
+
         console.log(mergedQuestionnaire);
 
         setFinalDisplay(mergedQuestionnaire);
@@ -196,10 +195,8 @@ const IncrementalForm = ({isQuestionnaireToReset, setFinalResult}) => {
             behavior: 'smooth',
             block: 'start'
         });
-
     }
-
-
+    
     return (
         <>
             {currentQuestion <= 7 ?
