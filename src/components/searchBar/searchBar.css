@@ -30,6 +30,7 @@ input{
     font-size: 1.0em;
     margin: 0.5em;
     width: 90%;
+    margin-top: 0;
 }
 
 .search-bar{
