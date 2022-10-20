@@ -1,6 +1,6 @@
 import './App.css';
 
-import SearchBar from "./components/searchBar";
+import SearchBar from "./components/searchBar/searchBar";
 import {useEffect, useState} from "react";
 import IncrementalForm from "./components/incrementalForm/incrementalForm";
 import InitialExplanation from "./components/initialExplanation/initialExplanation";

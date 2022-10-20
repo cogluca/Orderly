@@ -1,0 +1,46 @@
+.top-nav {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.navbar {
+    display: flex;
+    flex-flow: row
+}
+
+.logo-wrap{
+    justify-content: start;
+    align-content: center;
+    align-items: center;
+}
+
+image {
+    cursor: pointer;
+}
+
+.logo{
+    width: 12em;
+    height: auto;
+    justify-self: left;
+    cursor: pointer;
+}
+
+input{
+    padding: 1.0em 1em;
+    font-size: 1.0em;
+    margin: 0.5em;
+    width: 90%;
+}
+
+.search-bar{
+    display: flex;
+    flex-flow: row wrap;
+    align-content: center;
+    flex-grow: 1;
+}
+
+.photo-curtain {
+    display: inline-grid;
+    column-count: 3;
+    justify-content: center;
+}
