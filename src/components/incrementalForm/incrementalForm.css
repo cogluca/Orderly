@@ -1,0 +1,49 @@
+
+form{
+    align-self: center;
+}
+
+
+label {
+
+    display: flex;
+    flex-flow: column;
+    gap: 1em;
+    justify-self: center;
+    border-style: solid;
+    padding: 1em;
+    border-radius: 0.6em
+
+}
+
+.progression-choice {
+
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+
+
+textarea {
+    border-radius: 0.6em;
+    padding: 1em;
+    align-self: center;
+}
+
+.result-display {
+
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+button{
+    background-color: #1DA1F2;
+    border-radius: 0.6em;
+    color: white;
+    cursor: pointer;
+}
+
+.finished-display {
+    display: none;
+}

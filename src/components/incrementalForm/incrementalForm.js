@@ -1,57 +1,5 @@
 import {useEffect, useState} from "react";
-
-
-const styleForm = {
-
-    alignSelf: 'center',
-
-
-}
-
-const styleLabel = {
-
-    display: 'flex',
-    flexFlow: 'column',
-    gap: '1em',
-    justifySelf: 'center',
-    borderStyle: 'solid',
-    padding: '1em',
-    borderRadius: '0.6em'
-
-
-}
-
-const styleButtons = {
-
-    display: 'flex',
-    flexFlow: 'row',
-    justifyContent: 'center',
-
-}
-
-const styleTextArea = {
-
-    borderRadius: '0.6em',
-    padding: '1em',
-    alignSelf: 'center',
-
-}
-
-const styleFinishedArea = {
-    display: 'flex',
-    flexFlow: 'column',
-    justifyContent: 'center'
-}
-
-const styleButton = {
-    backgroundColor: '#1DA1F2',
-    borderRadius: '0.6em',
-    color: 'white'
-}
-
-const styleFinishedDisplay = {
-    display: 'none'
-}
+import './incrementalForm.css'
 
 
 const IncrementalForm = ({isQuestionnaireToReset, setFinalResult}) => {
@@ -200,32 +148,32 @@ const IncrementalForm = ({isQuestionnaireToReset, setFinalResult}) => {
     return (
         <>
             {currentQuestion <= 7 ?
-                <form style={styleForm}>
-                    <label style={styleLabel}>
+                <form >
+                    <label >
                         {currentTextualQuestion}
-                        <textarea className='answer-input' style={styleTextArea} placeholder='Answer here ...'
+                        <textarea className='answer-input'  placeholder='Answer here ...'
                                   onInput={adjustTextAreaSize}
                                   onChange={() => handleQuestionConfirm(currentQuestion)}></textarea>
-                        <div style={styleButtons}>
-                            <button style={styleButton}
+                        <div className='progression-choice' >
+                            <button
                                     onClick={(e) => handleRoutingToPreviousQuestion(e, currentQuestion)}>Previous
                             </button>
-                            <button style={styleButton}
+                            <button
                                     onClick={(e) => handleRoutingToNextQuestion(e, currentQuestion)}>Next
                             </button>
                         </div>
                     </label>
                 </form>
                 :
-                <div className='result-display' style={styleFinishedArea}>
+                <div className='result-display' >
                     <h3>You're all set and done</h3>
-                    <button style={styleButton} onClick={() => {
+                    <button  onClick={() => {
                         displayFinalResult(setFinalResult)
                     }}>Check answers
                     </button>
                 </div>
             }
-            <div style={styleFinishedDisplay} className='finished-display'>
+            <div  className='finished-display'>
                 <h1>Are you seeing any patterns ?</h1>
                 {finalDisplay.map((element, index)=>
                     <section key={index}>
