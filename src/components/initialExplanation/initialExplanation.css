@@ -1,0 +1,23 @@
+
+.explanation-section {
+    display: flex;
+    flex-flow: row;
+}
+
+.what-is-it-for {
+    display: flex;
+    flex-flow: column;
+    gap: 2em;
+}
+
+.explanation-style {
+
+    display: flex;
+    flex-flow: column;
+    gap: 2em;
+}
+
+li {
+    padding: 0.5em;
+    text-align: left;
+}
