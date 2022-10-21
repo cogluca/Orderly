@@ -1,16 +1,13 @@
-const InitialExplanation = () => {
+import './initialExplanation.css'
 
-    const styleParagraph = {
-        textAlign: 'left',
-        paddingTop: '0.5em'
-    }
+const InitialExplanation = () => {
 
     return (
         <section className='explanation-section'>
 
             <div className='what-is-it-for'>
                 <h1>What is this for ?</h1>
-                <p style={styleParagraph}>It's a a way to declutter your brain from both the day to day emotions that clog your brain and to understand the long held ones</p>
+                <p>It's a a way to declutter your brain from both the day to day emotions that clog your brain and to understand the long held ones</p>
             </div>
             <div className='explanation-style'>
                 <h1>How does this work ?</h1>
