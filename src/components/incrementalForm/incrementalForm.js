@@ -156,11 +156,12 @@ const IncrementalForm = ({isQuestionnaireToReset, setFinalResult}) => {
                         <textarea className='answer-input' placeholder='Answer here ...'
                                   onInput={adjustTextAreaSize}
                                   onChange={() => handleQuestionConfirm(currentQuestion)}></textarea>
-                        <div className='progression-choice'>
-                            <button
-                                onClick={(e) => handleRoutingToPreviousQuestion(e, currentQuestion)}>Previous
-                            </button>
-                            <button
+                        <div className='progression-choice'>{ currentQuestion > 1 ?
+                            <button data-testid='previous-button'
+                                    onClick={(e) => handleRoutingToPreviousQuestion(e, currentQuestion)}>Previous
+                            </button> : null
+                        }
+                            <button data-testid='next-button'
                                 onClick={(e) => handleRoutingToNextQuestion(e, currentQuestion)}>Next
                             </button>
                         </div>
@@ -169,14 +170,14 @@ const IncrementalForm = ({isQuestionnaireToReset, setFinalResult}) => {
                 :
                 <div className='result-display'>
                     <h3>You're all set and done</h3>
-                    <button onClick={() => {
+                    <button data-testid='finishline-button' onClick={() => {
                         displayFinalResult(setFinalResult)
                     }}>Check answers
                     </button>
                 </div>
             }
             <div className='finished-display'>
-                <h1>Are you seeing any patterns ?</h1>
+                <h1 data-testid='result-display'>Are you seeing any patterns ?</h1>
                 {finalDisplay.map((element, index) =>
                     <section key={index}>
                         <h3>{element.question}</h3>

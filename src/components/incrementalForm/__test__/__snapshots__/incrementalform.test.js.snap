@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing rendered component against snapshot 1`] = `
+[
+  <form>
+    <label
+      className="incremental-form-label"
+    >
+      <span
+        data-testid="span"
+      />
+      <textarea
+        className="answer-input"
+        onChange={[Function]}
+        onInput={[Function]}
+        placeholder="Answer here ..."
+      />
+      <div
+        className="progression-choice"
+      >
+        <button
+          data-testid="next-button"
+          onClick={[Function]}
+        >
+          Next
+        </button>
+      </div>
+    </label>
+  </form>,
+  <div
+    className="finished-display"
+  >
+    <h1
+      data-testid="result-display"
+    >
+      Are you seeing any patterns ?
+    </h1>
+  </div>,
+]
+`;
