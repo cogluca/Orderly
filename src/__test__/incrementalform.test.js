@@ -1,4 +1,3 @@
-
 //maybe my components are too tightly coupled to allow unit testing, might need to refactor ...
 //how the fuck should I decouple state
 
@@ -6,19 +5,21 @@
 // Arrange Act Assert
 
 import React from "react";
-import {render} from "@testing-library/react";
-import ShallowRenderer from 'react-test-renderer/shallow';
-
-
-
-// in your test:
+import {getByLabelText, render} from "@testing-library/react";
+import renderer from 'react-test-renderer';
+import '@testing-library/jest-dom'
 
 
 // in your test:
 
+
+// in your test:
+/**
+ * @jest-environment jsdom
+ */
 
 test(
-    "should create a basic form",async ()=>{
+    "should create a basic form", async () => {
 
         //do I have to mount the component ?
 
@@ -52,16 +53,12 @@ test(
         //Why am I making a shallow copy if I need access to the dom root ?
 
         const IncrementalForm = ((await import('../components/incrementalForm/incrementalForm')).default);
-        const renderer = new ShallowRenderer();
-        renderer.render(<IncrementalForm setFinalResult={false} isQuestionnaireToReset={false}/>);
-        const {resultIncrementalForm} = renderer.getRenderOutput();
-
+        const {getByTestId} = render(<IncrementalForm setFinalResult={false}
+                                                                      isQuestionnaireToReset={false}/>);
         //isn't this a fucking shallow copy ???????????
-        expect(resultIncrementalForm('label').innerText).toEqual('What does this picture remind you off ?');
+        // eslint-disable-next-line testing-library/prefer-screen-queries
+        expect(getByTestId('span')).toHaveTextContent('What does this picture remind you off ?');
 
     }
-
-
-
 )
 

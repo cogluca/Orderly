@@ -114,13 +114,13 @@ const IncrementalForm = ({isQuestionnaireToReset, setFinalResult}) => {
 
     }
 
-   async function displayFinalResult(setFinalResult) {
+    async function displayFinalResult(setFinalResult) {
 
         setFinalResult(true);
 
         const mergedQuestionnaire = [];
 
-        for (let i = 0; i <= 7; i++ ) {
+        for (let i = 0; i <= 7; i++) {
             mergedQuestionnaire[i] = {
                 question: questionBooklet[i],
                 answer: answerBooklet[i]
@@ -144,43 +144,44 @@ const IncrementalForm = ({isQuestionnaireToReset, setFinalResult}) => {
             block: 'start'
         });
     }
-    
+
     return (
         <>
             {currentQuestion <= 7 ?
                 <form>
                     <label className='incremental-form-label'>
-                        {currentTextualQuestion}
-                        <textarea className='answer-input'  placeholder='Answer here ...'
+                        <span data-testid='span'>
+                            {currentTextualQuestion}
+</span>
+                        <textarea className='answer-input' placeholder='Answer here ...'
                                   onInput={adjustTextAreaSize}
                                   onChange={() => handleQuestionConfirm(currentQuestion)}></textarea>
-                        <div className='progression-choice' >
+                        <div className='progression-choice'>
                             <button
-                                    onClick={(e) => handleRoutingToPreviousQuestion(e, currentQuestion)}>Previous
+                                onClick={(e) => handleRoutingToPreviousQuestion(e, currentQuestion)}>Previous
                             </button>
                             <button
-                                    onClick={(e) => handleRoutingToNextQuestion(e, currentQuestion)}>Next
+                                onClick={(e) => handleRoutingToNextQuestion(e, currentQuestion)}>Next
                             </button>
                         </div>
                     </label>
                 </form>
                 :
-                <div className='result-display' >
+                <div className='result-display'>
                     <h3>You're all set and done</h3>
-                    <button  onClick={() => {
+                    <button onClick={() => {
                         displayFinalResult(setFinalResult)
                     }}>Check answers
                     </button>
                 </div>
             }
-            <div  className='finished-display'>
+            <div className='finished-display'>
                 <h1>Are you seeing any patterns ?</h1>
-                {finalDisplay.map((element, index)=>
+                {finalDisplay.map((element, index) =>
                     <section key={index}>
                         <h3>{element.question}</h3>
                         <p>{element.answer}</p>
                     </section>
-
                 )
                 }
             </div>
