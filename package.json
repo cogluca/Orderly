@@ -18,13 +18,15 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "react-test-renderer": "^18.2.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "testJest": "jest --watchAll --verbose --coverage"
   },
   "eslintConfig": {
     "extends": [
@@ -45,7 +47,24 @@
     ]
   },
   "devDependencies": {
+    "babel-plugin-css-modules-transform": "^1.6.2",
     "dotenv": "^16.0.3",
-    "eslint": "8.22.0"
+    "eslint": "8.22.0",
+    "jest": "^27.5.1"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "css-modules-transform"
+    ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^.+\\.(css|less)$": "<rootDir>/__mocks__/CSSStub.js",
+      "\\.(jpg|jpeg|png|gif)": "<rootDir>/__mocks__/fileMock.js"
+    }
   }
 }

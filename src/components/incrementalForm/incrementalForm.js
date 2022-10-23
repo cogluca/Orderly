@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import './incrementalForm.css'
+import './incrementalForm.css';
 
 
 const IncrementalForm = ({isQuestionnaireToReset, setFinalResult}) => {
@@ -148,8 +148,8 @@ const IncrementalForm = ({isQuestionnaireToReset, setFinalResult}) => {
     return (
         <>
             {currentQuestion <= 7 ?
-                <form >
-                    <label >
+                <form>
+                    <label className='incremental-form-label'>
                         {currentTextualQuestion}
                         <textarea className='answer-input'  placeholder='Answer here ...'
                                   onInput={adjustTextAreaSize}
