@@ -24,7 +24,7 @@ const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility, apiC
 
 
 
-    async function searchImgQuery(queryArgument) {
+     async function searchImgQuery(queryArgument) {
 
         const queryResult = await fetch(`https://api.unsplash.com/search/photos?query=${queryArgument}`, {
             method: "GET",
