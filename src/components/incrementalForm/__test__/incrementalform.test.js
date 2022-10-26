@@ -132,12 +132,6 @@ test("Testing questionnaire finishline", async ()=>{
 
 
 
-
-
-
-
-
-
 it('Testing rendered component against snapshot', async () => {
 
     const IncrementalForm = ((await import('../incrementalForm')).default);
