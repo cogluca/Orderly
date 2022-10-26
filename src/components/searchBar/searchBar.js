@@ -34,6 +34,7 @@ const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility, apiC
             }
         });
 
+
         return await queryResult.json();
 
     }
@@ -67,7 +68,7 @@ const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility, apiC
                 </div>
                 <div className="search-bar">
 
-                    <input type="text"  className="search-img" placeholder="Search image"
+                    <input type="text"  className="search-img" placeholder="Search image" data-testid = "search-input"
                            onInput={(e) => {
                                setSearch(e.target.value)
                            }}/>
@@ -77,9 +78,9 @@ const SearchBar = ({choosePhoto, isCurtainVisible, changeCurtainVisibility, apiC
                 {isCurtainVisible ?
                     searchedPhotos.results?.map((singlePhoto) => {
                     return (<figure key={singlePhoto.id}><a
-                        onClick={e => choosePhoto(singlePhoto.urls.small, e)}><img src={`${singlePhoto.urls.small}`} key={singlePhoto.id}
+                        onClick={e => choosePhoto(singlePhoto.urls.small, e)}><img src={`${singlePhoto.urls.small}`} key={singlePhoto.id} data-testid = "generated-photo"
                                                                                    alt={singlePhoto.alt}/></a></figure>)
-                }) : null}
+                }) : <></>}
             </div>
         </header>
 

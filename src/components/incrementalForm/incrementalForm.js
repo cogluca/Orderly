@@ -74,7 +74,6 @@ const IncrementalForm = ({isQuestionnaireToReset, setFinalResult}) => {
         if (currentQuestion <= 7) {
             const textArea = document.getElementsByClassName('answer-input');
             textArea[0].value = answerBooklet[currentQuestion];
-            console.log(answerBooklet[currentQuestion]);
         }
     }, [currentQuestion])
 
@@ -82,7 +81,6 @@ const IncrementalForm = ({isQuestionnaireToReset, setFinalResult}) => {
 
         const inputValue = await document.getElementsByClassName('answer-input');
 
-        console.log(inputValue[0].value);
 
         await setAnswerBooklet((prevState) => ({
             ...prevState,
@@ -91,19 +89,15 @@ const IncrementalForm = ({isQuestionnaireToReset, setFinalResult}) => {
 
     }
 
-    useEffect(() => console.log(answerBooklet), [answerBooklet])
-
 
     function handleRoutingToNextQuestion(e, currentQuestion) {
         e.preventDefault();
         setCurrentQuestion(++currentQuestion);
-        console.log(currentQuestion);
     }
 
     function handleRoutingToPreviousQuestion(e, currentQuestion) {
         e.preventDefault();
         setCurrentQuestion(--currentQuestion);
-        console.log(currentQuestion);
     }
 
     function adjustTextAreaSize() {
@@ -126,8 +120,6 @@ const IncrementalForm = ({isQuestionnaireToReset, setFinalResult}) => {
                 answer: answerBooklet[i]
             }
         }
-
-        console.log(mergedQuestionnaire);
 
         setFinalDisplay(mergedQuestionnaire);
 
