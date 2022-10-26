@@ -46,5 +46,11 @@ like Firebase
 
 - Learned how to deploy an application on Vercel and serve the environmental variables through project configurations on the platform
 
+- Learned the basics of testing with Jest and React-testing-library
+
+- Learned to setup a CI workflow with Github Actions
+
+- Learned to setup a CD workflow with Vercel 
+
 
 
