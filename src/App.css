@@ -2,6 +2,8 @@
   text-align: center;
   display: flex;
   flex-flow: column;
+  height: 100%;
+  overflow: hidden;
 }
 
 .App-logo {

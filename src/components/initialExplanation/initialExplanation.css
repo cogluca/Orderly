@@ -1,19 +1,31 @@
-
 .explanation-section {
     display: flex;
     flex-flow: row;
+    gap: 1em;
 }
 
 .what-is-it-for {
     display: flex;
     flex-flow: column;
     gap: 2em;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 2em;
+}
+
+.what-is-it-for:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .explanation-style {
     display: flex;
     flex-flow: column;
     gap: 2em;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 2em;
+}
+
+.explanation-style:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 li {
